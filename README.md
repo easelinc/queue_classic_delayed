@@ -5,15 +5,17 @@ future.
 
 It's important to note that queue_classic_delayed doesn't guarantee
 exactly when a job will run. It will only place the specified job in the
-job queue after the point in time that is specified.
+job queue on the next run of the scheduler following the point in time
+that is specified.
 
 ## Setup
 
-1. Install queue_classic (you already have queue_classic, setup right?)
+1. Install and configure queue_classic.
 1. Add queue_classic_delayed to your gemfile.
 1. Run the migration below.
-1. Setup `QC::Delayed::Scheduler.perfom` to execute at an interval you
-   wish to check for new jobs.
+1. Setup `QC::Delayed::Scheduler.perform` to execute at an interval you
+   wish to check for new jobs. You may find the clockwork gem to be
+   useful.
 
 ## db/migrate/add_queue_classic_delayed.rb
 
@@ -35,13 +37,14 @@ end
 # Usage
 
 ```
-# Will print 'hello from yesterday' 1 day from now
-QC::Delayed.enqueue(1.day, 'Kernel.puts', 'hello from yesterday')
+# Will print 'Hello from yesterday!' 1 day from now
+QC::Delayed.enqueue(1.day.from_now, 'Kernel.puts', 'Hello from yesterday!')
 ```
 
 # Testing
 
 1. Create a test database like so `createdb queue_classic_delayed_test`
+1. Run `rake test`
 
 # Future Work
 
