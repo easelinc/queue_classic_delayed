@@ -3,9 +3,9 @@ require File.expand_path('../lib/queue_classic_delayed/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Matt Colyer"]
-  gem.email         = ["matt@colyer.name"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["matt@easel.io"]
+  gem.description   = %q{A way to defer queue_classic jobs to the future, the future!}
+  gem.summary       = %q{A way to defer queue_classic jobs to the future, the future!}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
@@ -13,5 +13,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "queue_classic_delayed"
   gem.require_paths = ["lib"]
-  gem.version       = QueueClassicDelayed::VERSION
+  gem.version       = QC::Delayed::VERSION
 end
