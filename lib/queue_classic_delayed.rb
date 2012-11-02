@@ -19,5 +19,14 @@ module QC
       sql = "INSERT INTO #{TABLE_NAME} (q_name, delayed_until, method, args) VALUES ($1, $2, $3, $4)"
       QC::Conn.execute(sql, nil, delayed_until, method, OkJson.encode(args))
     end
+
+    # Test-only: This function is used by tests to determine if a job is
+    # removed properly.
+    #
+    # Returns the number of jobs that are currently delayed.
+    def self.count
+      sql = "SELECT COUNT(*) FROM #{TABLE_NAME}"
+      QC::Conn.execute(sql)["count"].to_i
+    end
   end
 end

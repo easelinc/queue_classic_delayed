@@ -22,6 +22,7 @@ describe 'QC::Delayed::Scheduler' do
     it 'schedules it' do
       QC.should_receive(:enqueue).once
       QC::Delayed::Scheduler.perform
+      QC::Delayed.count.should eq(0)
     end
   end
 
@@ -35,6 +36,7 @@ describe 'QC::Delayed::Scheduler' do
     it 'schedules them' do
       QC.should_receive(:enqueue).exactly(2).times
       QC::Delayed::Scheduler.perform
+      QC::Delayed.count.should eq(0)
     end
   end
 end
