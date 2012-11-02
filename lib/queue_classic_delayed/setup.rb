@@ -8,7 +8,7 @@ module QC
       # Raises RuntimeError if something goes wrong.
       def self.create
         sql = """
-          CREATE TABLE queue_classic_delayed_jobs (
+          CREATE TABLE #{QC::Delayed::TABLE_NAME} (
               id serial PRIMARY KEY,
               q_name varchar(255),
               method varchar(255),
@@ -30,7 +30,7 @@ module QC
       # Raises RuntimeError if something goes wrong.
       def self.drop
         QC::Conn.transaction do
-          QC::Conn.execute("DROP TABLE IF EXISTS queue_classic_delayed_jobs")
+          QC::Conn.execute("DROP TABLE IF EXISTS #{QC::Delayed::TABLE_NAME}")
         end
       end
     end
