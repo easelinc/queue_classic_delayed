@@ -1,5 +1,6 @@
 require 'queue_classic_delayed/version'
 require 'queue_classic_delayed/setup'
+require 'queue_classic_delayed/scheduler'
 
 module QC
   module Delayed
