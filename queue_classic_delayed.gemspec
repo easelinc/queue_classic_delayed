@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = QC::Delayed::VERSION
 
-  gem.add_runtime_dependency "pg", "~> 0.14.0"
+  gem.add_runtime_dependency "queue_classic", "~> 2.0.1"
 
   gem.add_development_dependency "bundler", "~> 1.2.0"
   gem.add_development_dependency "rspec", "~> 2.11.0"

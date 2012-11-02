@@ -39,6 +39,10 @@ end
 QC::Delayed.enqueue(1.day, 'Kernel.puts', 'hello from yesterday')
 ```
 
+# Testing
+
+1. Create a test database like so `createdb queue_classic_delayed_test`
+
 # Future Work
 
 1. Implement `QC::Delayed::Queue.enqueue` so we can handle items on a
