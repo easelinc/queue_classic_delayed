@@ -22,7 +22,7 @@ describe 'QC::Delayed' do
     end
 
     it 'saves the proper arguments' do
-      QC::OkJson.decode(subject['args']).should eq(['Hello Tomorrow!'])
+      JSON.parse(subject['args']).should eq(['Hello Tomorrow!'])
     end
   end
 end

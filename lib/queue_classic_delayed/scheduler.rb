@@ -14,7 +14,7 @@ module QC
 
         jobs_to_queue.each do |job|
           method = job['method']
-          args = QC::OkJson.decode(job['args'])
+          args = JSON.parse(job['args'])
           QC.enqueue(method, *args)
           QC::Conn.execute("DELETE FROM #{QC::Delayed::TABLE_NAME} WHERE id = $1", job['id'].to_i)
         end
