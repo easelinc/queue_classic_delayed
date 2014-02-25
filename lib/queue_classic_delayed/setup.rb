@@ -18,9 +18,7 @@ module QC
 
           CREATE INDEX idx_qcd_on_delayed_until ON queue_classic_delayed_jobs (delayed_until);
         """
-        QC::Conn.transaction do
-          QC::Conn.execute(sql)
-        end
+        QC.default_conn_adapter.execute(sql)
       end
 
       # Public: Drops the table used for storing delayed jobs using the
@@ -29,9 +27,7 @@ module QC
       # Returns nothing.
       # Raises RuntimeError if something goes wrong.
       def self.drop
-        QC::Conn.transaction do
-          QC::Conn.execute("DROP TABLE IF EXISTS #{QC::Delayed::TABLE_NAME}")
-        end
+        QC.default_conn_adapter.execute("DROP TABLE IF EXISTS #{QC::Delayed::TABLE_NAME}")
       end
     end
   end

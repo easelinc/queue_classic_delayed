@@ -11,7 +11,7 @@ describe 'QC::Delayed' do
       QC::Delayed.enqueue(@delayed_until, 'Kernel.puts', 'Hello Tomorrow!')
     end
 
-    subject { QC::Conn.execute("SELECT delayed_until, method, args from #{QC::Delayed::TABLE_NAME}") }
+    subject { QC.default_conn_adapter.execute("SELECT delayed_until, method, args from #{QC::Delayed::TABLE_NAME}") }
 
     it 'saves the proper timestamp for delaying' do
       DateTime.parse(subject['delayed_until']).should be_within(0.9).of(@delayed_until)

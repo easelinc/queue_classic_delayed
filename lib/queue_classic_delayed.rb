@@ -17,7 +17,7 @@ module QC
     # Throws RuntimeError if the job can not be queued.
     def self.enqueue(delayed_until, method, *args)
       sql = "INSERT INTO #{TABLE_NAME} (q_name, delayed_until, method, args) VALUES ($1, $2, $3, $4)"
-      QC::Conn.execute(sql, nil, delayed_until, method, JSON.dump(args))
+      QC.default_conn_adapter.execute(sql, nil, delayed_until, method, JSON.dump(args))
     end
 
     # Test-only: This function is used by tests to determine if a job is
@@ -26,7 +26,7 @@ module QC
     # Returns the number of jobs that are currently delayed.
     def self.count
       sql = "SELECT COUNT(*) FROM #{TABLE_NAME}"
-      QC::Conn.execute(sql)["count"].to_i
+      QC.default_conn_adapter.execute(sql)["count"].to_i
     end
   end
 end
